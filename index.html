@@ -1,154 +1,507 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-  <link rel="stylesheet" href="style.css">
-</head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aravind J Naik - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-
-  
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { 
+          getFirestore, 
+          collection, 
+          addDoc, 
+          serverTimestamp 
+        } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    
+        // Your Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyCDjiaIcUzwh5OIubRwBryQoG88WOqClTk",
+          authDomain: "portfolio-29cde.firebaseapp.com",
+          projectId: "portfolio-29cde",
+          storageBucket: "portfolio-29cde.appspot.com",
+          messagingSenderId: "883278297409",
+          appId: "1:883278297409:web:4f449746b29462948dc9c0",
+          measurementId: "G-7C2TSKM237"
+        };
+    
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        
+        // Export the functions we need
+        window.firebaseApp = {
+          db,
+          collection,
+          addDoc,
+          serverTimestamp
+        };
+      </script>
+    </head>
 <body>
-    <nav>
-      <a href="#image">HOME</a>
-      <a href="#about">ABOUT</a>
-      <a href="#project">PROJECT</a>
-      <a href="#certificate">CERTIFICATE</a>
-      <a href="#contact">CONTACT</a>
-    </nav>
-    <section id="image">
-      <div class="image">
-        <img src="Aravindjpg.jpg" alt="Aravind J Naik" />
-        <div class="details">
-          <h1 class="name">Hi I am,</h1>
-          <h1>Aravind J Naik</h1>
-          <h3>Computer Science and Engineering</h3>
-          <h4>Shree Devi Institute Of Technology Manglore</h4>
-          <div class="social-media">
-            <a href="https://github.com/AravindNaik01" target="_blank"
-              ><i class="fa-brands fa-github"></i
-            ></a>
-            <a
-              href="https://www.linkedin.com/in/aravind-naik-07a711277"
-              target="_blank"
-              ><i class="fa-brands fa-linkedin"></i
-            ></a>
-            <button><a href="https://drive.google.com/file/d/1cWYV_PyxP9kCl1gPQt9ov_kAkKHOfwyl/view?usp=drivesdk">Resume</a></button>
-          </div>
+    <header>
+        <div class="container">
+            <!-- <div class="logo">Aravind.dev</div> -->
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <!-- <li><a href="Aravind J Naik.docx" class="resume-btn" target="_blank" rel="noopener noreferrer">Resume</a></li> -->
+                </ul>
+                <button class="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon theme-icon"></i>
+                </button>
+
+                
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
         </div>
-      </div>
-    </section>
-    <section id="about">
-      <div class="about">
-        <h1>About Me</h1>
-        <p>
-          I am a passionate and driven Computer Science and Engineering student
-          at Shree Devi Institute of Technology, with a strong interest in
-          software development, AI, and web technologies. Through my coursework,
-          projects, and internships, I have developed expertise in programming
-          languages like Java, Python, and C, as well as web development tools
-          like HTML, CSS. My goal is to contribute to innovative software
-          solutions that solve real-world problems while continuously growing my
-          technical and professional skills.
-        </p>
-      </div>
-      <div class="box">
-        <div class="card">
-          <h1>SSLC</h1>
-          <h4>Morarji Desai Residential School</h4>
-          <p>84.80%</p>
-        </div>
-        <div class="card">
-          <h1>PUC</h1>
-          <h4>Morarji Desai Residential School</h4>
-          <h5>PCMB</h5>
-          <p>81.83%</p>
-        </div>
-        <div class="card">
-          <h1>B.E</h1>
-          <h4>Shree Devi Institute of Technology</h4>
-          <h5>Computer Science & Engineering</h5>
-          <p>8.5 CGPA</p>
-        </div>
-      </div>
-    </section>
-    <section id="skill">
-      <div class="skill">
-        <h1>SKILLS</h1>
-        <div class="lng">
-          <img class="logo" src="htmlimg.jpg" alt="HTML" />
-          <img class="logo" src="cssimg.jpeg" alt="CSS" />
-          <img class="logo" src="javascriptimg.jpg" alt="JavaScript" />
-          <img class="logo" src="js img.jpg" alt="JS" />
-          <img class="logo" src="javaimg.jpg" alt="Java" />
-          <img class="logo" src="cimg.jpg" alt="C" />
-        </div>
-      </div>
-    </section>
-    <section id="project">
-      <div class="project">
-        <h1>PROJECT</h1>
-        <div class="project1">
-          <h1>Mango Leaf Disease Detection</h1>
-          <p>
-            Developed an AI-based system to detect diseases in mango leaves using
-            Python and AI/ML libraries. Achieved 90% accuracy in disease
-            detection.
-          </p>
-        </div>
-        <div class="project1">
-          <h1>Student Feedback System</h1>
-          <p>
-            The Student Feedback System is a web-based platform designed to
-            collect, analyze, and visualize student feedback on courses, faculty,
-            and overall academic experiences. This system helps educational
-            institutions improve their teaching methods and curriculum based on
-            data-driven insights.
-          </p>
-        </div>
-      </div>
-    </section>
-    <section id="certificate">
-      <h1 style="text-align: center; margin: 100px;">CERTIFICATE</h1>
-      <div class="certificate">
-        <div class="certificate1">
-          <h2>Web Development Workshop - Microsoft Learn Student Ambassador</h2>
-        </div>
-        <div class="certificate1">
-          <h2>Core Java Training - Internshala Trainings</h2>
-        </div>
-        <div class="certificate1">
-          <h2>PostMan API Fundamentals Student Expert</h2>
-        </div>
-      </div>
-    </section>
-    <section id="contact">
-      <div class="contact">
-        <h1>Contact Me</h1>
-        <ul>
-          <li>Email: <a href="mailto:naikaravind044@gmail.com">naikaravind044@gmail.com</a></li>
-          <li >Phone: +91 6363986735</li>
-          <li>LinkedIn: <a href="https://www.linkedin.com/in/aravind-naik-07a711277">My LinkedIn Profile</a></li>
-          <li>GitHub: <a href="https://github.com/AravindNaik01">My GitHub Profile</a></li>
-        </ul>
-      </div>
-    </section>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Hi, I'm Aravind J Naik</h1>
+                        <h2>I'm a Student</h2>
+                        <p>Aspiring Software Engineer passionate about problem-solving, software design, and building innovative applications.</p>
+                        <!-- <a href="#projects" class="cta-btn">View Projects</a> -->
+                        <a href="Aravind J Naik.docx" class="resume-btn" target="_blank" rel="noopener noreferrer">Resume</a>
+
+                    </div>
+                    <div class="hero-image">
+                        <img src="VKRM7826 copy.jpg" alt="Aravind J Naik" class="profile-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>About Me</h2>
+                    <p>I'm an aspiring Software Engineer currently pursuing my Bachelor's degree</p>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>With a strong foundation in programming languages like Java, Python, and JavaScript, along with experience in web development, I'm constantly expanding my skillset. I enjoy working with modern technologies and frameworks, applying Agile methodologies, and exploring AI/ML concepts.</p>
+                    </div>
+                    <div class="about-cards">
+                        <div class="card">
+                            <h3>Background</h3>
+                            <p>Currently pursuing B.E in Computer Science & Engineering (2022-2026) at Shree D. Institute Of Technology, Mangalore</p>
+                        </div>
+                        <div class="card">
+                            <h3>Technical Skills</h3>
+                            <p>Proficient in Java, Python, C, HTML, CSS, JavaScript, and React. Experienced with Git, GitHub, and other development tools.</p>
+                        </div>
+                        <div class="card">
+                            <h3>Approach</h3>
+                            <p>Passionate about creating elegant solutions to complex problems through clean code and innovative approaches.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- <section id="skills" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>My Skills</h2>
+                    <p>A collection of technologies and tools I've worked with</p>
+                </div>
+                <div class="skills-container">
+                    <div class="skills-category">
+                        <h3>Programming Languages</h3>
+                        <div class="skill-item">
+                            <span>Java</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 90%;"></div>
+                            </div>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-item">
+                            <span>Python</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 80%;"></div>
+                            </div>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-item">
+                            <span>C</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 75%;"></div>
+                            </div>
+                            <span>75%</span>
+                        </div>
+                        <div class="skill-item">
+                            <span>JavaScript</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 80%;"></div>
+                            </div>
+                            <span>80%</span>
+                        </div>
+                    </div>
+                    <div class="skills-category">
+                        <h3>Web Technologies</h3>
+                        <div class="skill-item">
+                            <span>HTML</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 90%;"></div>
+                            </div>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-item">
+                            <span>CSS</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 85%;"></div>
+                            </div>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-item">
+                            <span>React</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 75%;"></div>
+                            </div>
+                            <span>75%</span>
+                        </div>
+                        <div class="skill-item">
+                            <span>Node.js</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 70%;"></div>
+                            </div>
+                            <span>70%</span>
+                        </div>
+                    </div>
+                    <div class="skills-category">
+                        <h3>Tools & Concepts</h3>
+                        <div class="skill-item">
+                            <span>Git/GitHub</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 85%;"></div>
+                            </div>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-item">
+                            <span>Figma</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 70%;"></div>
+                            </div>
+                            <span>70%</span>
+                        </div>
+                        <div class="skill-item">
+                            <span>OOP</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 85%;"></div>
+                            </div>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-item">
+                            <span>Agile Methods</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 75%;"></div>
+                            </div>
+                            <span>75%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+        <section id="skills" class="skills">
+            <div class="section-header">
+                <h2>My Skills</h2>
+                <p>A collection of technologies and tools I've worked with</p>
+            </div>
+            
+            <div class="skills-container">
+                <!-- Programming Languages -->
+                <div class="skills-category">
+                    <h3><i class="fas fa-code"></i> Programming Languages</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <i class="fab fa-java"></i>
+                            <span>Java</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-python"></i>
+                            <span>Python</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-c"></i>
+                            <span>C</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-js"></i>
+                            <span>JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Web Technologies -->
+                <div class="skills-category">
+                    <h3><i class="fas fa-globe"></i> Web Technologies</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <i class="fab fa-html5"></i>
+                            <span>HTML</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-css3-alt"></i>
+                            <span>CSS</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-react"></i>
+                            <span>React</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-node-js"></i>
+                            <span>Node.js</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tools & Concepts -->
+                <div class="skills-category">
+                    <h3><i class="fas fa-tools"></i> Tools & Concepts</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <i class="fab fa-git-alt"></i>
+                            <span>Git</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-figma"></i>
+                            <span>Figma</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-cubes"></i>
+                            <span>OOP</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-project-diagram"></i>
+                            <span>Agile</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>My Projects</h2>
+                    <p>A collection of projects I've worked on, demonstrating my skills and interests</p>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Mango Leaf Disease Detection</h3>
+                            <div class="project-tags">
+                                <span>Python</span>
+                                <span>TensorFlow</span>
+                                <span>OpenCV</span>
+                            </div>
+                        </div>
+                        <p>An AI-based application using TensorFlow & OpenCV to detect diseases in mango leaves with 85% accuracy.</p>
+                        <a href="#" class="project-link"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Student Feedback System</h3>
+                            <div class="project-tags">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JavaScript</span>
+                            </div>
+                        </div>
+                        <p>Web-based system for collecting, analyzing and visualizing student feedback for educational institutions.</p>
+                        <a href="https://github.com/AravindNaik01/Student-Feedback" class="project-link"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                    <!-- <div class="project-card">
+                        <div class="project-header">
+                            <h3>Product Expiry Tracker</h3>
+                            <div class="project-tags">
+                                <span>Java</span>
+                                <span>Android</span>
+                                <span>SQLite</span>
+                            </div>
+                        </div>
+                        <p>Barcode scanner-based application to track product expiry dates and send timely alerts.</p>
+                        <a href="#" class="project-link"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Ambulance Service App</h3>
+                            <div class="project-tags">
+                                <span>React Native</span>
+                                <span>Node.js</span>
+                                <span>Firebase</span>
+                            </div>
+                        </div>
+                        <p>Mobile application to connect emergency patients with nearby ambulance services.</p>
+                        <a href="#" class="project-link"><i class="fab fa-github"></i> GitHub</a>
+                    </div> -->
+                    <!-- <div class="project-card">
+                        <div class="project-header">
+                            <h3>Weather and Air Quality Check</h3>
+                            <div class="project-tags">
+                                <span>React</span>
+                                <span>JavaScript</span>
+                                <span>REST API</span>
+                            </div>
+                        </div>
+                        <p>React application that displays real-time weather and air quality data using public APIs.</p>
+                        <a href="#" class="project-link"><i class="fab fa-github"></i> GitHub</a>
+                    </div> -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Feed Optimizer</h3>
+                            <div class="project-tags">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JavaScript</span>
+                            </div>
+                        </div>
+                        <p>Browser extension that filters repetitive content on Instagram and YouTube using machine learning.</p>
+                        <a href="https://github.com/Appuraj46/Hackathon" class="project-link"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Experience & Achievements</h2>
+                    <p>My professional journey, certifications, and hackathon participations</p>
+                </div>
+                <div class="experience-container">
+                    <div class="experience-column">
+                        <h3>Professional Experience</h3>
+                        <div class="experience-item">
+                            <h4>Web Development Internship</h4>
+                            <p class="company">Aadi Foundation x Microsoft</p>
+                            <p class="date">Oct 2024</p>
+                            <p>Worked on web development projects, implementing responsive designs and functionalities using modern frameworks and best practices.</p>
+                        </div>
+                        <div class="experience-item">
+                            <h4>Core Java Training</h4>
+                            <p class="company">Internshala</p>
+                            <p class="date">Oct 2023 - Nov 2023</p>
+                            <p>Completed intensive training in Core Java, covering OOP concepts, data structures, file handling, and building applications.</p>
+                        </div>
+                    </div>
+                    <div class="experience-column">
+                        <h3>Hackathons</h3>
+                        <div class="experience-item">
+                            <h4>Drivr Connect Hackathon</h4>
+                            <p class="date">DriveConnect is an innovative in-vehicle communication device designed to enhance road safety and emergency response by enabling real-time, short-range interaction between nearby vehicles</p>
+                            <p>Developed a traffic light system that prioritizes ambulances by detecting their approach and adjusting traffic signals.</p>
+                        </div>
+                        <div class="experience-item">
+                            <h4>Browser Extensions Hackathon</h4>
+                            <p class="date">Feed Optimizer Browser Extension</p>
+                            <p>Created a browser extension that  filter repetitive content on social media platforms.</p>
+                        </div>
+                    </div>
+                    <div class="experience-column">
+                        <h3>Certifications</h3>
+                        <div class="experience-item">
+                            <h4>Microsoft Learn Student Ambassador Web Development Workshop</h4>
+                            <p class="company">Microsoft</p>
+                            <p>Completed web development workshop covering modern web technologies and best practices.</p>
+                        </div>
+                        <div class="experience-item">
+                            <h4>Core Java Training Certification</h4>
+                            <p class="company">Internshala</p>
+                            <p class="date">Nov 2023</p>
+                            <p>Successfully completed training in Core Java covering fundamental and advanced concepts.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Get In Touch</h2>
+                    <p>Have a question or want to work together? I'd love to hear from you!</p>
+                </div>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <p><i class="fas fa-envelope"></i> naikaravind044@gmail.com</p>
+                        <p><i class="fas fa-phone"></i> +91 6363986735</p>
+                        <p><i class="fab fa-github"></i> AravindNaik01</p>
+                        <p><i class="fab fa-linkedin"></i> Aravind J Naik</p>
+                        <div class="social-links">
+                            <a href="https://github.com/AravindNaik01"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/aravind-naik-07a711277?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="mailto:naikaravind044@gmail.com"><i class="fas fa-envelope"></i></a>
+
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Send Me a Message</h3>
+                        <form id="contactForm">
+                          <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your name" required>
+                          </div>
+                          <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your email address" required>
+                          </div>
+                          <div class="form-group">
+                            <input type="text" id="subject" name="subject" placeholder="Subject of your message">
+                          </div>
+                          <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Your message here." required></textarea>
+                          </div>
+                          <p>Currently looking for: Internship opportunities, Collaboration on interesting projects</p>
+                          <button type="submit" class="submit-btn" id="submitBtn">Send Message</button>
+                          <p id="formFeedback" class="form-feedback"></p>
+                        </form>
+                      </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
     <footer>
-      <p>&copy; 2023 Aravind J Naik. All rights reserved.</p>
+        <div class="container">
+            <p>Aravind J Naik</p>
+            <p>Software Engineer & Web Developer</p>
+            <!-- <div class="footer-social">
+                <a href="https://www.linkedin.com/in/aravind-naik-07a711277?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fab fa-linkedin-in"></i></a>
+                <a href="mailto:naikaravind044@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/AravindNaik01"><i class="fab fa-github"></i></a>
+
+            </div> -->
+            <p class="copyright">© 2024 Aravind J Naik. All rights reserved</p>
+        </div>
     </footer>
-  </body>
+
+
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="script.js"></script>
+</body>
 </html>
