@@ -1,10 +1,9 @@
 
 
 
+
 document.addEventListener('DOMContentLoaded', function() {
-   
     // Mobile Navigation
-    
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
     const navItems = document.querySelectorAll('.nav-links li');
@@ -20,10 +19,91 @@ document.addEventListener('DOMContentLoaded', function() {
             navLinks.classList.remove('active');
         });
     });
+///
+
+// Chatbot Feature
+ const chatbotButton = document.getElementById("chatbot-button");
+  const chatbotWindow = document.getElementById("chatbot-window");
+  const closeChat = document.getElementById("close-chat");
+  const chatbotMessages = document.getElementById("chatbot-messages");
+  const chatbotInput = document.getElementById("chatbot-input");
+
+  // Resume data with clickable links
+  const resumeData = `
+You are Aravind J Naik's personal portfolio assistant.
+Details:
+- 📧 Email: <a href="mailto:naikaravind044@gmail.com">naikaravind044@gmail.com</a>
+- 📱 Phone: <a href="tel:+916363986735">+91 6363986735</a>
+- 💻 GitHub: <a href="https://github.com/AravindNaik01" target="_blank">github.com/AravindNaik01</a>
+- 🔗 LinkedIn: <a href="https://linkedin.com/in/aravindnaik01" target="_blank">linkedin.com/in/aravindnaik01</a>
+- 📍 Location: Mangalore, India
+- 💡 Skills: Java, C, Python, HTML, CSS, JavaScript, ReactJS, NodeJS, MySQL, MongoDB, Git, GitHub, VS Code, Figma
+- 🎓 Education: B.E. Computer Science Engineering, Shree Devi Institute of Technology, CGPA: 8.6
+- 🛠 Projects: Student Feedback System (HTML, CSS, JS); Mango Leaf Disease Detection (TensorFlow + Flask, 85% accuracy)
+- 💼 Experience: Web Dev Intern @ Aadi Foundation x Microsoft; MERN Stack Developer Intern @ Zephyr Technologies
+- 📜 Certifications: Core Java (Internshala); Postman API Fundamentals Student Expert
+- 🏆 Achievements: Winner Sankalp '25 Hackathon; Winner Code4Change Hackathon
+- 🌟 Extra: IEEE Student Member, participated in technical competitions.
+
+If the user asks about Aravind, answer based on above info.  
+If irrelevant, politely say you only answer about Aravind.
+`;
+
+  async function askBot(userMessage) {
+    const apiKey = "AIzaSyA9niQryktIIIUGeoMh-sGs1WIMGyY4blQ"; // ⚠️ testing key
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+    const body = {
+      contents: [
+        {
+          parts: [
+            { text: resumeData },
+            { text: "User: " + userMessage }
+          ]
+        }
+      ]
+    };
+
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json; charset=UTF-8" },
+        body: JSON.stringify(body)
+      });
+
+      const data = await res.json();
+      return data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn’t generate a response.";
+    } catch (err) {
+      console.error(err);
+      return "Error: Unable to reach AI server.";
+    }
+  }
+
+  function addMessage(sender, text) {
+    const msg = document.createElement("div");
+    msg.classList.add("msg", sender);
+    msg.innerHTML = (sender === "user" ? "<b>You:</b> " : "<b>Bot:</b> ") + text; // ✅ innerHTML for links
+    chatbotMessages.appendChild(msg);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  }
+
+  chatbotInput.addEventListener("keypress", async (e) => {
+    if (e.key === "Enter") {
+      const userText = chatbotInput.value.trim();
+      if (!userText) return;
+      addMessage("user", userText);
+      chatbotInput.value = "";
+
+      const botReply = await askBot(userText);
+      addMessage("bot", botReply);
+    }
+  });
+
+  chatbotButton.onclick = () => chatbotWindow.style.display = "flex";
+  closeChat.onclick = () => chatbotWindow.style.display = "none";
 
 
     // Smooth Scrolling
-  
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -43,9 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-
     // Sticky Header
- 
     const header = document.querySelector('header');
     const heroSection = document.querySelector('.hero');
     
@@ -56,9 +134,8 @@ document.addEventListener('DOMContentLoaded', function() {
             header.classList.remove('scrolled');
         }
     });
-  
+
     // Active Link Highlighting
- 
     const sections = document.querySelectorAll('section');
     
     window.addEventListener('scroll', function() {
@@ -81,9 +158,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-  
     // Theme Switcher
-  
     const themeToggle = document.querySelector('.theme-toggle');
     const themeIcon = document.querySelector('.theme-icon');
     const htmlElement = document.documentElement;
@@ -111,9 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-   
     // Skills Section Animation (without percentages)
-  
     const skillItems = document.querySelectorAll('.skill-item');
     
     function animateSkills() {
@@ -146,9 +219,7 @@ document.addEventListener('DOMContentLoaded', function() {
         skillsObserver.observe(skillsSection);
     }
 
-  
     // Scroll Animations
-    
     ScrollReveal().reveal('.hero-text, .hero-image', {
         delay: 200,
         origin: 'bottom',
@@ -173,7 +244,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
    
- // Firebase Contact Form Submission
+//     // Firebase Contact Form Submission
 const contactForm = document.getElementById('contactForm');
 const submitBtn = document.getElementById('submitBtn');
 const formFeedback = document.getElementById('formFeedback');
